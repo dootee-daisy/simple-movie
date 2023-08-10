@@ -4,4 +4,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
 @layer base {
+  body {
+    @apply bg-slate-800;
+  }
+}
+
+@layer components {
+  .page-container {
+    width: 1280px;
+    @apply mx-auto;
+  }
+  .movie-item {
+    background-image: var(--url);
+  }
+  .movies-list .swiper-slide {
+    width: calc(100% / 4 - 40px);
+    height: auto;
+  }
 }

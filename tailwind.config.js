@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: ["Popspin", "sans-serif"],
+      },
+      colors: {
+        primary: "#f13b6c",
+      },
+    },
   },
   plugins: [],
 }
