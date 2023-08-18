@@ -17,8 +17,23 @@
   .movie-item {
     background-image: var(--url);
   }
+  .casts .swiper-slide,
   .movies-list .swiper-slide {
     width: calc(100% / 4 - 40px);
     height: auto;
+  }
+  .banner .swiper {
+    height: 100%;
+  }
+}
+
+.paginate {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  font-size: large;
+  color: #fff;
+  .selected {
+    @apply text-primary;
   }
 }

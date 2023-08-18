@@ -1,37 +1,36 @@
-import { useState } from "react"
-import MovieList from "./components/movie/MovieList"
+import "swiper/scss"
+import { Route, Routes } from "react-router-dom"
+import { lazy, Suspense } from "react"
+import Main from "./components/layout/Main"
 import Banner from "./components/banner/Banner"
 
+const HomePage = lazy(() => import("./components/pages/HomePage"))
+const MovieDetail = lazy(() => import("./components/pages/MovieDetail"))
+const MoviesPage = lazy(() => import("./components/pages/MoviesPage"))
 function App() {
   return (
     <>
-      <header className="flex gap-10 p-3 mb-10 text-white header">
-        <span className="text-primary">TV Series</span>
-        <span>Movie</span>
-        <span>Anime</span>
-      </header>
-      <Banner></Banner>
-      <section className="movies-layout page-container">
-        <h2 className="inline-block my-5 text-2xl font-bold text-white capitalize">
-          Now playing
-        </h2>
-        {/*  style={`--a: ${}`} */}
-        <MovieList></MovieList>
-      </section>
-      <section className="movies-layout page-container">
-        <h2 className="inline-block my-5 text-2xl font-bold text-white capitalize">
-          Top rated movies
-        </h2>
-        {/*  style={`--a: ${}`} */}
-        <MovieList type="top_rated"></MovieList>
-      </section>
-      <section className="movies-layout page-container">
-        <h2 className="inline-block my-5 text-2xl font-bold text-white capitalize">
-          Popular
-        </h2>
-        {/*  style={`--a: ${}`} */}
-        <MovieList type="popular"></MovieList>
-      </section>
+      <Suspense fallback={<></>}>
+        <Routes>
+          <Route element={<Main></Main>}>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Banner></Banner>
+                  <HomePage></HomePage>
+                </>
+              }
+            />
+            <Route path="/movies" element={<MoviesPage></MoviesPage>} />
+            <Route
+              path="/movie/:movieId"
+              element={<MovieDetail></MovieDetail>}
+            />
+          </Route>
+          <Route path="*" element={<>404 not found</>}></Route>
+        </Routes>
+      </Suspense>
     </>
   )
 }
